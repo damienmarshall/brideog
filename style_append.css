@@ -1,0 +1,47 @@
+/* ... existing styles ... */
+
+/* Accessories */
+.accessory-item {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background: #fff;
+    transition: transform 0.2s;
+}
+
+.accessory-item:hover {
+    transform: scale(1.1);
+    background: #f0f0f0;
+}
+
+.placed-accessory {
+    position: absolute;
+    cursor: grab;
+    font-size: 32px;
+    user-select: none;
+    z-index: 10;
+    transition: transform 0.1s;
+}
+
+.placed-accessory:active {
+    cursor: grabbing;
+    transform: scale(1.2);
+}
+
+/* Update Bag Container to be more prominent in Stage 4 */
+#bag-container {
+    transition: all 0.5s ease;
+}
+
+.bag-active #bag-container {
+    /* Move bag to center or highlight it when in Stage 4? 
+      For now, let's just make sure it's visible. 
+      Maybe scale it up? */
+    transform: scale(1.2) translateX(-50px);
+}

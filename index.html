@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Brideog Doll Decorator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div id="js-debug-banner"
+                style="background: red; color: white; padding: 20px; font-size: 24px; text-align: center; font-weight: bold; position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;">
+                JAVASCRIPT IS NOT RUNNING. CHECK BROWSER SETTINGS.
+            </div>
+            <h1>Maisigh do Bhrídeog!</h1>
+            <div class="progress-bar">
+                <div class="step active" data-step="0">Aghaidh</div>
+                <div class="step" data-step="1">Gúna</div>
+                <div class="step" data-step="2">Bling</div>
+                <div class="step" data-step="3">Sparán</div>
+                <div class="step" data-step="4">Do Bhrídeog</div>
+            </div>
+        </header>
+
+        <main class="workspace">
+            <!-- The Doll Area -->
+            <!-- The Doll Area -->
+            <!-- Controls Area (Moved Top) -->
+            <div class="controls-panel">
+                <!-- Generic Tool/Palette Template to be reused or we create unique ones per stage -->
+                <div id="stage-0-controls" class="control-group">
+
+                    <div class="palette" id="palette-0">
+                        <div class="color-swatch selected" style="background-color: #000000;" data-color="#000000">
+                        </div>
+                        <div class="color-swatch" style="background-color: #e74c3c;" data-color="#e74c3c"></div>
+                        <div class="color-swatch" style="background-color: #3498db;" data-color="#3498db"></div>
+                        <div class="color-swatch" style="background-color: #2ecc71;" data-color="#2ecc71"></div>
+                        <div class="color-swatch" style="background-color: #f1c40f;" data-color="#f1c40f"></div>
+                        <div class="color-swatch" style="background-color: #9b59b6;" data-color="#9b59b6"></div>
+                    </div>
+                    <div class="tools">
+                        <button class="tool-btn active" data-tool="brush">Scuab</button>
+                        <button class="tool-btn" data-tool="eraser">Scriosán</button>
+                        <button class="tool-btn" data-action="clear">Glan</button>
+                    </div>
+                </div>
+
+                <div id="stage-1-controls" class="control-group hidden">
+
+                    <div class="palette" id="palette-1">
+                        <div class="color-swatch selected" style="background-color: #e91e63;" data-color="#e91e63">
+                        </div> <!-- Pink -->
+                        <div class="color-swatch" style="background-color: #9c27b0;" data-color="#9c27b0"></div>
+                        <!-- Purple -->
+                        <div class="color-swatch" style="background-color: #3f51b5;" data-color="#3f51b5"></div>
+                        <!-- Indigo -->
+                        <div class="color-swatch" style="background-color: #00bcd4;" data-color="#00bcd4"></div>
+                        <!-- Cyan -->
+                        <div class="color-swatch" style="background-color: #ff9800;" data-color="#ff9800"></div>
+                        <!-- Orange -->
+                        <div class="color-swatch" style="background-color: #ffffff;" data-color="#ffffff"
+                            style="border: 1px solid #ccc;"></div> <!-- White -->
+                    </div>
+                    <div class="tools">
+                        <button class="tool-btn active" data-tool="brush">Scuab</button>
+                        <button class="tool-btn" data-tool="eraser">Scriosán</button>
+                        <button class="tool-btn" data-action="clear">Glan</button>
+                    </div>
+                </div>
+
+                <div id="stage-2-controls" class="control-group hidden">
+
+                    <p>Click to add, then drag to position.</p>
+                    <div class="palette" id="palette-2">
+                        <!-- Simple Emoji Accessories -->
+                        <div class="accessory-item" data-item="🎀">🎀</div>
+                        <div class="accessory-item" data-item="🎗️">🎗️</div>
+                        <div class="accessory-item" data-item="💎">💎</div>
+                        <div class="accessory-item" data-item="👑">👑</div>
+                        <div class="accessory-item" data-item="🌸">🌸</div>
+                        <div class="accessory-item" data-item="⭐">⭐</div>
+                        <div class="accessory-item" data-item="🦋">🦋</div>
+                        <div class="accessory-item" data-item="❤️">❤️</div>
+                    </div>
+                    <div class="tools">
+                        <button class="tool-btn" data-action="clear-acc">Glan</button>
+                    </div>
+                </div>
+
+                <div id="stage-3-controls" class="control-group hidden">
+
+                    <div class="palette" id="palette-3">
+                        <div class="color-swatch selected" style="background-color: #8e44ad;" data-color="#8e44ad">
+                        </div>
+                        <div class="color-swatch" style="background-color: #f39c12;" data-color="#f39c12"></div>
+                        <div class="color-swatch" style="background-color: #d35400;" data-color="#d35400"></div>
+                        <div class="color-swatch" style="background-color: #27ae60;" data-color="#27ae60"></div>
+                        <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                    </div>
+                    <div class="tools">
+                        <button class="tool-btn active" data-tool="brush">Scuab</button>
+                        <button class="tool-btn" data-tool="eraser">Scriosán</button>
+                        <button class="tool-btn" data-action="clear">Glan</button>
+                    </div>
+                </div>
+
+                <div id="stage-4-controls" class="control-group hidden">
+
+                    <button class="nav-btn" data-action="restart">Déan Ceann Eile</button>
+                </div>
+            </div>
+
+            <div class="doll-container">
+                <!-- DOLL CONTAINER: Reverted to 400px fixed width as requested. -->
+                <div class="doll-wrapper"
+                    style="position: relative; width: 100%; max-width: 400px; aspect-ratio: 400/600; margin: 0 auto;">
+                    <!-- LAYER 0: Poem Background (Behind everything) -->
+                    <div id="poem-background" class="hidden"
+                        style="position: absolute; top: 10%; left: 0; width: 100%; text-align: center; z-index: 0; opacity: 0.6; font-style: italic; font-weight: bold; color: black; pointer-events: none;">
+                        <p>Crios, crios</p>
+                        <p>Bríd í mo chrios</p>
+                        <p>Muire ‘s a Mac</p>
+                        <p>Bríd is a brat</p>
+                        <p>Má’s fearr atá sibh anocht,</p>
+                        <p>Go mba seacht bhfearr a bheidh sibh</p>
+                        <p>Bliain ó anocht</p>
+                    </div>
+                    <!-- LAYER 1: Base Doll Image -->
+                    <img src="assets/doll.png" alt="Brideog Doll" class="doll-asset"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+
+                    <!-- LAYER 2: Face Drawing (On top of doll) -->
+                    <canvas id="face-canvas" width="400" height="600"
+                        style="position: absolute; top: 0; left: 0; z-index: 5; cursor: crosshair;"></canvas>
+
+                    <!-- LAYER 3: Dress Layer -->
+                    <div id="dress-layer" class="hidden"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;">
+                        <!-- Dress Image -->
+                        <img src="assets/dress.png" alt="Dress Outline" class="doll-asset"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 11; pointer-events: none;">
+                        <!-- Dress Drawing (ON TOP) -->
+                        <canvas id="dress-canvas" width="400" height="600"
+                            style="position: absolute; top: 0; left: 0; z-index: 12; cursor: crosshair;"></canvas>
+                    </div>
+
+                    <!-- LAYER 4: Bag Layer (Moved to main stack) -->
+                    <div id="bag-container" class="hidden"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20;">
+                        <!-- Bag Image -->
+                        <img src="assets/bag.png" alt="Bag Outline"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 21; pointer-events: none;">
+                        <!-- Bag Drawing (ON TOP) -->
+                        <canvas id="bag-canvas" width="400" height="600"
+                            style="position: absolute; top: 0; left: 0; z-index: 22; cursor: crosshair;"></canvas>
+                    </div>
+
+                    <!-- LAYER 5: Accessories Layer -->
+                    <div id="accessories-layer" class="hidden"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 30; pointer-events: none;">
+                    </div>
+                </div>
+            </div>
+            <!-- Confetti Canvas -->
+            <canvas id="confetti-canvas"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none;"></canvas>
+
+
+
+        </main>
+
+
+    </div>
+    <script>
+
+        // IMMEDIATE DEBUG FEEDBACK
+        const banner = document.getElementById('js-debug-banner');
+        if (banner) {
+            banner.style.display = 'none'; // Hide if JS runs
+            console.log('JS execution confirmed. Banner hidden.');
+        }
+
+        console.log('Inline Script loading...');
+
+        try {
+            // State
+            const state = {
+                currentStage: 0, // 0: Face, 1: Dress, 2: Accessories, 3: Bag
+                color: '#000000',
+                tool: 'brush', // brush, eraser
+                brushSize: 4
+            };
+            window.appState = state; // Expose for debugging
+
+            // DOM Elements
+
+            const steps = document.querySelectorAll('.step');
+            const controlGroups = document.querySelectorAll('.control-group');
+            const faceCanvas = document.getElementById('face-canvas');
+            const dressCanvas = document.getElementById('dress-canvas');
+            const bagCanvas = document.getElementById('bag-canvas');
+
+            if (!faceCanvas) {
+                console.error('Critical elements missing from DOM');
+                alert('Error: Application could not load. Missing elements.');
+                throw new Error('Missing DOM elements');
+            }
+
+            // Contexts
+            const ctxFace = faceCanvas.getContext('2d');
+            const ctxDress = dressCanvas.getContext('2d');
+            const ctxBag = bagCanvas.getContext('2d');
+
+            // Initialize Canvases
+            console.log('Initializing Canvases');
+
+            // AUTO-RESIZE to fit Image
+            const baseDollImg = document.querySelector('.doll-wrapper img.doll-asset');
+            if (baseDollImg) {
+                baseDollImg.onload = function () {
+                    console.log('Base Image Loaded. Dimensions:', this.naturalWidth, this.naturalHeight);
+                    const wrapper = document.querySelector('.doll-wrapper');
+
+                    // 1. Set Wrapper Aspect Ratio to match image exactly
+                    wrapper.style.aspectRatio = `${this.naturalWidth} / ${this.naturalHeight}`;
+
+                    // 2. Set Canvas Resolutions to match image resolution (crisp drawing)
+                    const targetWidth = this.naturalWidth;
+                    const targetHeight = this.naturalHeight;
+
+                    [faceCanvas, dressCanvas, bagCanvas].forEach(c => {
+                        c.width = targetWidth;
+                        c.height = targetHeight;
+                    });
+
+                    // 3. Re-init contexts with new dimensions (not strictly needed for logic, but good for cleanliness)
+                    // Note: This clears the canvas, which is fine on load.
+                };
+
+                // Trigger if already cached
+                if (baseDollImg.complete) baseDollImg.onload();
+            }
+
+            initCanvas(faceCanvas, ctxFace, 0);
+            initCanvas(dressCanvas, ctxDress, 1);
+            initCanvas(bagCanvas, ctxBag, 3);
+
+            // Current active canvas for tools (clear, etc)
+            function getCurrentCanvasContext() {
+                if (state.currentStage === 0) return { canvas: faceCanvas, ctx: ctxFace };
+                if (state.currentStage === 1) return { canvas: dressCanvas, ctx: ctxDress };
+                if (state.currentStage === 3) return { canvas: bagCanvas, ctx: ctxBag };
+                return null;
+            }
+
+            // Navigation Logic
+
+
+            // Confetti Logic
+            const confettiCanvas = document.getElementById('confetti-canvas');
+            const ctxConfetti = confettiCanvas ? confettiCanvas.getContext('2d') : null;
+            let confettiAnimationId = null;
+            let particles = [];
+
+            function resizeConfetti() {
+                if (confettiCanvas) {
+                    confettiCanvas.width = window.innerWidth;
+                    confettiCanvas.height = window.innerHeight;
+                }
+            }
+            window.addEventListener('resize', resizeConfetti);
+            resizeConfetti();
+
+            function createParticle() {
+                return {
+                    x: Math.random() * confettiCanvas.width,
+                    y: -10,
+                    size: Math.random() * 10 + 5,
+                    color: ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff0055', '#3369e8'][Math.floor(Math.random() * 5)],
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 10 - 5
+                };
+            }
+
+            function drawConfetti() {
+                if (!ctxConfetti) return;
+                ctxConfetti.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+                if (particles.length < 150) particles.push(createParticle());
+
+                particles.forEach((p, index) => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    p.rotation += p.rotationSpeed;
+
+                    ctxConfetti.save();
+                    ctxConfetti.translate(p.x, p.y);
+                    ctxConfetti.rotate(p.rotation * Math.PI / 180);
+                    ctxConfetti.fillStyle = p.color;
+                    ctxConfetti.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctxConfetti.restore();
+
+                    if (p.y > confettiCanvas.height) particles.splice(index, 1);
+                });
+
+                confettiAnimationId = requestAnimationFrame(drawConfetti);
+            }
+
+            function startConfetti() {
+                if (!confettiCanvas) return;
+                confettiCanvas.style.display = 'block';
+                if (!confettiAnimationId) {
+                    particles = [];
+                    drawConfetti();
+                }
+            }
+
+            function stopConfetti() {
+                if (!confettiCanvas) return;
+                confettiCanvas.style.display = 'none';
+                if (confettiAnimationId) {
+                    cancelAnimationFrame(confettiAnimationId);
+                    confettiAnimationId = null;
+                }
+            }
+
+            function setStage(stageIndex) {
+                console.log('Setting stage to:', stageIndex);
+                state.currentStage = stageIndex;
+
+                // Stage 4 triggers
+                if (stageIndex === 4) {
+                    startConfetti();
+                } else {
+                    stopConfetti();
+                }
+
+                // Update Progress UI
+                steps.forEach(step => {
+                    const stepIndex = parseInt(step.dataset.step);
+                    step.classList.toggle('active', stepIndex <= stageIndex);
+
+                    // Add click interaction if not already added (safe to add repeatedly if identical, but cleaner to add once)
+                    // Since setStage is called multiple times, we really should add the listener OUTSIDE.
+                    // But here we are just updating UI.
+                });
+
+
+                // Update Controls
+                controlGroups.forEach((group) => {
+                    if (`stage-${stageIndex}-controls` === group.id) {
+                        group.classList.remove('hidden');
+                    } else {
+                        group.classList.add('hidden');
+                    }
+                });
+
+                // Update Doll View (Layers)
+                const dressLayer = document.getElementById('dress-layer');
+                const accLayer = document.getElementById('accessories-layer');
+                const bagContainer = document.getElementById('bag-container');
+                const appContainer = document.querySelector('.app-container');
+
+                if (dressLayer) {
+                    if (stageIndex >= 1) dressLayer.classList.remove('hidden');
+                    else dressLayer.classList.add('hidden');
+                }
+                if (accLayer) {
+                    if (stageIndex >= 2) accLayer.classList.remove('hidden');
+                    else accLayer.classList.add('hidden');
+                }
+                if (bagContainer) {
+                    if (stageIndex >= 3) bagContainer.classList.remove('hidden');
+                    else bagContainer.classList.add('hidden');
+                }
+
+                // Finish State styling
+                if (stageIndex === 4) {
+                    appContainer.classList.add('finished-state');
+                } else {
+                    appContainer.classList.remove('finished-state');
+                }
+            }
+
+            // Clickable Steps Logic (Moved outside setStage)
+            steps.forEach(step => {
+                step.addEventListener('click', () => {
+                    const stepIndex = parseInt(step.dataset.step);
+                    setStage(stepIndex);
+                });
+            });
+
+            // Restart Logic
+            const restartBtn = document.querySelector('[data-action="restart"]');
+            if (restartBtn) {
+                restartBtn.addEventListener('click', () => {
+                    console.log('Restarting');
+                    ctxFace.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
+                    ctxDress.clearRect(0, 0, dressCanvas.width, dressCanvas.height);
+                    ctxBag.clearRect(0, 0, bagCanvas.width, bagCanvas.height);
+                    document.getElementById('accessories-layer').innerHTML = '';
+                    setStage(0);
+                });
+            }
+
+            // Drawing Logic
+            function initCanvas(canvas, ctx, allowedStage) {
+                let isDrawing = false;
+                let lastX = 0;
+                let lastY = 0;
+
+                function getCoords(e, canvas) {
+                    const rect = canvas.getBoundingClientRect();
+                    let clientX = e.clientX;
+                    let clientY = e.clientY;
+
+                    if (e.touches && e.touches.length > 0) {
+                        clientX = e.touches[0].clientX;
+                        clientY = e.touches[0].clientY;
+                    } else if (e.changedTouches && e.changedTouches.length > 0) {
+                        clientX = e.changedTouches[0].clientX;
+                        clientY = e.changedTouches[0].clientY;
+                    }
+
+                    const scaleX = canvas.width / rect.width;
+                    const scaleY = canvas.height / rect.height;
+                    return [
+                        (clientX - rect.left) * scaleX,
+                        (clientY - rect.top) * scaleY
+                    ];
+                }
+
+                function startDrawing(e) {
+                    if (state.currentStage !== allowedStage) return;
+
+                    isDrawing = true;
+                    if (e.type !== 'mousedown') {
+                        try {
+                            canvas.setPointerCapture(e.pointerId);
+                        } catch (err) {
+                            console.warn('Pointer capture failed', err);
+                        }
+                    }
+                    [lastX, lastY] = getCoords(e, canvas);
+                    draw(e);
+                }
+
+                function draw(e) {
+                    if (!isDrawing) return;
+                    if (e.cancelable) e.preventDefault();
+
+                    const [x, y] = getCoords(e, canvas);
+
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(x, y);
+                    ctx.strokeStyle = state.tool === 'eraser' ? 'rgba(0,0,0,0)' : state.color;
+
+                    if (state.tool === 'eraser') {
+                        ctx.globalCompositeOperation = 'destination-out';
+                        ctx.lineWidth = 15;
+                    } else {
+                        ctx.globalCompositeOperation = 'source-over';
+                        ctx.lineWidth = state.brushSize;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                    }
+
+                    ctx.stroke();
+                    [lastX, lastY] = [x, y];
+                }
+
+                function stopDrawing(e) {
+                    if (!isDrawing) return;
+                    isDrawing = false;
+                    if (e.type !== 'mouseup' && e.pointerId) {
+                        try {
+                            canvas.releasePointerCapture(e.pointerId);
+                        } catch (err) {
+                            // ignore
+                        }
+                    }
+                    ctx.beginPath();
+                }
+
+                // Use Pointer Events if available
+                if (window.PointerEvent) {
+                    canvas.addEventListener('pointerdown', startDrawing);
+                    canvas.addEventListener('pointermove', draw);
+                    canvas.addEventListener('pointerup', stopDrawing);
+                    canvas.addEventListener('pointercancel', stopDrawing);
+                } else {
+                    // Fallback
+                    canvas.addEventListener('mousedown', startDrawing);
+                    canvas.addEventListener('mousemove', draw);
+                    canvas.addEventListener('mouseup', stopDrawing);
+                    canvas.addEventListener('mouseout', stopDrawing);
+                    canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e.touches[0]); }, { passive: false });
+                    canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e.touches[0]); }, { passive: false });
+                    canvas.addEventListener('touchend', stopDrawing);
+                }
+            }
+
+            // Accessory Logic
+            document.querySelectorAll('.accessory-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const char = e.target.innerText;
+                    addAccessory(char);
+                });
+            });
+
+            const accessoriesLayer = document.getElementById('accessories-layer');
+            if (accessoriesLayer) {
+                function addAccessory(char) {
+                    const el = document.createElement('div');
+                    el.classList.add('placed-accessory');
+                    el.innerText = char;
+                    el.style.left = '50%';
+                    el.style.top = '20%';
+                    el.style.transform = 'translate(-50%, -50%)';
+
+                    let isDragging = false;
+                    let startX, startY, initialLeft, initialTop;
+
+                    el.addEventListener('pointerdown', dragStart);
+
+                    function dragStart(e) {
+                        e.preventDefault();
+                        if (e.target !== el) return;
+
+                        isDragging = true;
+                        el.setPointerCapture(e.pointerId);
+
+                        // 1. Calculate where the element IS visually right now
+                        const rect = el.getBoundingClientRect();
+                        const parentRect = accessoriesLayer.getBoundingClientRect();
+
+                        // 2. Convert global visual coordinates to local container coordinates
+                        const currentLeft = rect.left - parentRect.left;
+                        const currentTop = rect.top - parentRect.top;
+
+                        // 3. Set these as the explicit left/top
+                        el.style.left = `${currentLeft}px`;
+                        el.style.top = `${currentTop}px`;
+
+                        // 4. Remove the transform that was centering it, so it doesn't jump
+                        el.style.transform = 'none';
+
+                        // 5. Interaction start points
+                        startX = e.clientX;
+                        startY = e.clientY;
+                        initialLeft = currentLeft;
+                        initialTop = currentTop;
+
+                        el.addEventListener('pointermove', dragMove);
+                        el.addEventListener('pointerup', dragEnd);
+                        el.addEventListener('pointercancel', dragEnd);
+                    }
+
+                    function dragMove(e) {
+                        if (!isDragging) return;
+                        e.preventDefault();
+
+                        const dx = e.clientX - startX;
+                        const dy = e.clientY - startY;
+
+                        // Simple linear addition now that we are in pure pixel space
+                        el.style.left = `${initialLeft + dx}px`;
+                        el.style.top = `${initialTop + dy}px`;
+                    }
+
+                    function dragEnd(e) {
+                        if (!isDragging) return;
+                        isDragging = false;
+                        el.releasePointerCapture(e.pointerId);
+                        el.removeEventListener('pointermove', dragMove);
+                        el.removeEventListener('pointerup', dragEnd);
+                        el.removeEventListener('pointercancel', dragEnd);
+                    }
+
+                    accessoriesLayer.appendChild(el);
+                }
+            }
+
+            // Clear Accessories
+            const clearAccBtn = document.querySelector('[data-action="clear-acc"]');
+            if (clearAccBtn) {
+                clearAccBtn.addEventListener('click', () => {
+                    accessoriesLayer.innerHTML = '';
+                });
+            }
+
+            // Palette & Tools Interaction
+            document.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.addEventListener('click', (e) => {
+                    e.target.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+                    e.target.classList.add('selected');
+                    state.color = e.target.dataset.color;
+                    if (state.tool === 'eraser') state.tool = 'brush';
+                    updateToolsUI();
+                });
+            });
+
+            document.querySelectorAll('.tool-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const tool = e.target.dataset.tool;
+                    const action = e.target.dataset.action;
+
+                    if (action === 'clear') {
+                        const current = getCurrentCanvasContext();
+                        if (current) {
+                            current.ctx.clearRect(0, 0, current.canvas.width, current.canvas.height);
+                        }
+                        return;
+                    }
+
+                    if (tool) {
+                        state.tool = tool;
+                        updateToolsUI();
+                    }
+                });
+            });
+
+            function updateToolsUI() {
+                document.querySelectorAll('.tool-btn').forEach(btn => {
+                    if (btn.dataset.tool === state.tool) {
+                        btn.classList.add('active');
+                    } else if (btn.dataset.tool) {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            console.log('Inline Script initialized successfully');
+
+        } catch (globalError) {
+            console.error('Global Inline Script Error:', globalError);
+            alert('Error: ' + globalError.message);
+        }
+    </script>
+</body>
+
+</html>
